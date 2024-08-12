@@ -1,0 +1,132 @@
+<!-- employee-form.component.html -->
+<div class="container">
+  <form #productForm="ngForm" (ngSubmit)="onProductCreate(productForm.value)">
+    <h2>Employee Form</h2>
+    <label for="eName">Employee Name</label>
+    <input
+      type="text"
+      name="eName"
+      class="eName"
+      placeholder="Enter Name..."
+      ngModel
+    />
+    <label for="eAge">Employee Age</label>
+    <input
+      type="number"
+      name="eAge"
+      id="eAge"
+      placeholder="Employee Age..."
+      ngModel
+    />
+    <label for="eEmail">Employee Email</label>
+    <input
+      type="email"
+      name="eEmail"
+      id="eEmail"
+      placeholder="Employee Email..."
+      ngModel
+    />
+    <label for="ePosition">Employee Position</label>
+    <input
+      type="text"
+      name="ePosition"
+      id="ePosition"
+      placeholder="Employee Position..."
+      ngModel
+    />
+    <label for="eLocation">Employee Location</label>
+    <input
+      type="text"
+      name="eLocation"
+      id="eLocation"
+      placeholder="Employee Location..."
+      ngModel
+    />
+    <label for="ePostal">Employee Postal</label>
+    <input
+      type="number"
+      name="ePostal"
+      id="ePostal"
+      placeholder="Employee Postal..."
+      ngModel
+    />
+    <label for="eCity">Employee City</label>
+    <input
+      type="text"
+      name="eCity"
+      id="eCity"
+      placeholder="Employee City..."
+      ngModel
+    />
+    <input type="submit" value="Submit" />
+  </form>
+</div>
+
+<!-- <div class="displayTable">
+  <h3>All Employees</h3>
+  <table>
+    <tbody>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Email</th>
+      <th>Position</th>
+      <th>Location</th>
+      <th>Postal</th>
+      <th>City</th>
+    </tbody>
+    <tbody *ngFor="let employee of allEmployees; index as i">
+      <td>{{ i + 1 }}</td>
+      <td>{{ employee.eName }}</td>
+      <td>{{ employee.eAge }}</td>
+      <td>{{ employee.eEmail }}</td>
+      <td>{{ employee.ePosition }}</td>
+      <td>{{ employee.eLocation }}</td>
+      <td>{{ employee.ePostal }}</td>
+      <td>{{ employee.eCity }}</td>
+    </tbody>
+  </table>
+</div> -->
+<!-- <div class="displayTable">
+  <table>
+    <thead>
+      <th>Age</th>
+      <th>City</th>
+      <th>Email</th>
+      <th>Location</th>
+      <th>Name</th>
+      <th>Position</th>
+      <th>Postal</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of emps; index as i">
+        <td>{{ emp.eAge }}</td>
+        <td>{{ emp.eCity }}</td>
+        <td>{{ emp.eEmail }}</td>
+        <td>{{ emp.eLocation }}</td>
+        <td>{{ emp.eName }}</td>
+        <td>{{ emp.ePosition }}</td>
+        <td>{{ emp.ePostal }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div> -->
+<div class="employeeList">
+  <div *ngFor="let emp of emps; index as i" class="employee">
+    <p class="employee-title">
+      <strong>Employee {{ i + 1 }}:</strong>
+    </p>
+    <p><span class="label">Name:</span> {{ emp.eName }}</p>
+    <p><span class="label">Age:</span> {{ emp.eAge }}</p>
+    <p><span class="label">Email:</span> {{ emp.eEmail }}</p>
+    <p><span class="label">Position:</span> {{ emp.ePosition }}</p>
+    <p><span class="label">Location:</span> {{ emp.eLocation }}</p>
+    <p><span class="label">Postal:</span> {{ emp.ePostal }}</p>
+    <p><span class="label">City:</span> {{ emp.eCity }}</p>
+
+    <div class="employee-actions">
+      <button class="btn btn-edit">Edit</button>
+      <button class="btn btn-delete">Delete</button>
+    </div>
+  </div>
+</div>
