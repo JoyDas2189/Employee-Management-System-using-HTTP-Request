@@ -1,6 +1,5 @@
-<!-- employee-form.component.html -->
 <div class="container">
-  <form #productForm="ngForm" (ngSubmit)="onProductCreate(productForm.value)">
+  <form #employeeForm="ngForm" (ngSubmit)="onEmployeeAdd(employeeForm.value)">
     <h2>Employee Form</h2>
     <label for="eName">Employee Name</label>
     <input type="text" name="eName" class="eName" ngModel />
@@ -16,59 +15,12 @@
     <input type="number" name="ePostal" id="ePostal" ngModel />
     <label for="eCity">Employee City</label>
     <input type="text" name="eCity" id="eCity" ngModel />
-    <input type="submit" value="Submit" />
+    <input
+      type="submit"
+      value=" {{ editMode ? 'Update Employee' : 'Add Employee' }} "
+    />
   </form>
 </div>
-
-<!-- <div class="displayTable">
-  <h3>All Employees</h3>
-  <table>
-    <tbody>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Age</th>
-      <th>Email</th>
-      <th>Position</th>
-      <th>Location</th>
-      <th>Postal</th>
-      <th>City</th>
-    </tbody>
-    <tbody *ngFor="let employee of allEmployees; index as i">
-      <td>{{ i + 1 }}</td>
-      <td>{{ employee.eName }}</td>
-      <td>{{ employee.eAge }}</td>
-      <td>{{ employee.eEmail }}</td>
-      <td>{{ employee.ePosition }}</td>
-      <td>{{ employee.eLocation }}</td>
-      <td>{{ employee.ePostal }}</td>
-      <td>{{ employee.eCity }}</td>
-    </tbody>
-  </table>
-</div> -->
-<!-- <div class="displayTable">
-  <table>
-    <thead>
-      <th>Age</th>
-      <th>City</th>
-      <th>Email</th>
-      <th>Location</th>
-      <th>Name</th>
-      <th>Position</th>
-      <th>Postal</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let emp of emps; index as i">
-        <td>{{ emp.eAge }}</td>
-        <td>{{ emp.eCity }}</td>
-        <td>{{ emp.eEmail }}</td>
-        <td>{{ emp.eLocation }}</td>
-        <td>{{ emp.eName }}</td>
-        <td>{{ emp.ePosition }}</td>
-        <td>{{ emp.ePostal }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div> -->
 <div class="employeeList">
   <div *ngFor="let emp of emps; index as i" class="employee">
     <p class="employee-title">
@@ -83,7 +35,7 @@
     <p><span class="label">City:</span> {{ emp.eCity }}</p>
 
     <div class="employee-actions">
-      <button type="button" class="btn btn-update" (click)="editEmployee(emp.id)">
+      <button type="button" class="btn btn-edit" (click)="editEmployee(emp.id)">
         Update
       </button>
       <button class="btn btn-delete" (click)="deleteEmployee(emp.id)">

@@ -1,7 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { map } from 'rxjs';
+import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-http-request',
@@ -11,70 +10,70 @@ import { map } from 'rxjs';
 export class HttpRequestComponent implements OnInit {
   allEmployees: any[] = [];
   emps: any;
-  @ViewChild('productForm') form: NgForm;
+  editMode: boolean = false;
+  editingEmployeeId: string | null = null;
+  @ViewChild('employeeForm') form: NgForm;
 
-  constructor(private httpRequest: HttpClient) {}
+  constructor(private employeeService: EmployeeService) {}
 
   ngOnInit(): void {
     this.getEmployees();
   }
 
   getEmployees() {
-    this.httpRequest
-      .get(
-        'https://angularlearn-b8615-default-rtdb.firebaseio.com/employees.json'
-      )
-      .pipe(
-        map((res) => {
-          let emps = [];
-          for (let id in res) {
-            emps.push({ ...res[id], id });
-          }
-          return emps;
-        })
-      )
-      .subscribe((res) => {
-        this.emps = res;
-        console.log(res);
-      });
+    this.employeeService.getEmployees().subscribe((res) => {
+      this.emps = res;
+      console.log(res);
+    });
   }
+
   deleteEmployee(id: string) {
-    this.httpRequest
-      .delete(
-        `https://angularlearn-b8615-default-rtdb.firebaseio.com/employees/${id}.json`
-      )
-      .subscribe((res) => {
-        this.getEmployees();
-        console.log(res);
-      });
+    this.employeeService.deleteEmployee(id).subscribe((res) => {
+      this.getEmployees();
+      console.log(res);
+    });
   }
 
   editEmployee(id: string) {
-    let currentEmpoyee = this.emps.find((p) => {
+    let currentEmpoyee = this.emps.find((p: any) => {
       return p.id === id;
     });
-    console.log(currentEmpoyee);
+    this.form.setValue({
+      eName: currentEmpoyee.eName,
+      eAge: currentEmpoyee.eAge,
+      eEmail: currentEmpoyee.eEmail,
+      ePosition: currentEmpoyee.ePosition,
+      eLocation: currentEmpoyee.eLocation,
+      ePostal: currentEmpoyee.ePostal,
+      eCity: currentEmpoyee.eCity,
+    });
+    this.editMode = true;
+    this.editingEmployeeId = id;
   }
 
-  onProductCreate(employees: {
+  onEmployeeAdd(employees: {
     eName: string;
     eAge: number;
     eEmail: string;
     ePosition: string;
-    elocation: string;
+    eLocation: string;
     ePostal: number;
     eCity: string;
   }) {
-    console.log(employees);
-    const headers = new HttpHeaders({ myHeader: 'Joy header' });
-    this.httpRequest
-      .post<{ eName: string }>(
-        'https://angularlearn-b8615-default-rtdb.firebaseio.com/employees.json',
-        employees,
-        { headers: headers }
-      )
-      .subscribe((res) => {
+    if (this.editMode && this.editingEmployeeId) {
+      this.employeeService
+        .updateEmployee(this.editingEmployeeId, employees)
+        .subscribe(() => {
+          this.getEmployees();
+          this.form.reset();
+          this.editMode = false;
+          this.editingEmployeeId = null;
+        });
+    } else {
+      this.employeeService.addEmployee(employees).subscribe(() => {
         this.getEmployees();
+        this.form.reset();
       });
+    }
   }
 }
