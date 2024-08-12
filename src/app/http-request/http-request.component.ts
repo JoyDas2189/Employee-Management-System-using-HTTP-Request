@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { map } from 'rxjs';
 
 @Component({
@@ -9,12 +10,12 @@ import { map } from 'rxjs';
 })
 export class HttpRequestComponent implements OnInit {
   allEmployees: any[] = [];
-  emps;
+  emps: any;
+  @ViewChild('productForm') form: NgForm;
 
   constructor(private httpRequest: HttpClient) {}
 
   ngOnInit(): void {
-    // this.fetchEmployee();
     this.getEmployees();
   }
 
@@ -26,15 +27,33 @@ export class HttpRequestComponent implements OnInit {
       .pipe(
         map((res) => {
           let emps = [];
-          for (let key in res) {
-            emps.push({ ...res[key], key });
+          for (let id in res) {
+            emps.push({ ...res[id], id });
           }
           return emps;
         })
       )
       .subscribe((res) => {
         this.emps = res;
+        console.log(res);
       });
+  }
+  deleteEmployee(id: string) {
+    this.httpRequest
+      .delete(
+        `https://angularlearn-b8615-default-rtdb.firebaseio.com/employees/${id}.json`
+      )
+      .subscribe((res) => {
+        this.getEmployees();
+        console.log(res);
+      });
+  }
+
+  editEmployee(id: string) {
+    let currentEmpoyee = this.emps.find((p) => {
+      return p.id === id;
+    });
+    console.log(currentEmpoyee);
   }
 
   onProductCreate(employees: {
@@ -56,29 +75,6 @@ export class HttpRequestComponent implements OnInit {
       )
       .subscribe((res) => {
         this.getEmployees();
-        // this.fetchEmployee(); // Refresh the list after adding a new employee
       });
   }
-
-  // fetchEmployee() {
-  //   this.httpRequest
-  //     .get<{ [key: string]: any }>(
-  //       'https://angularlearn-b8615-default-rtdb.firebaseio.com/employees.json'
-  //     )
-  //     .pipe(
-  //       map((responseData) => {
-  //         const employeesArray: any[] = [];
-  //         for (const key in responseData) {
-  //           if (responseData.hasOwnProperty(key)) {
-  //             employeesArray.push({ ...responseData[key], id: key });
-  //           }
-  //         }
-  //         return employeesArray;
-  //       })
-  //     )
-  //     .subscribe((employees) => {
-  //       this.allEmployees = employees;
-  //       console.log(this.allEmployees);
-  //     });
-  // }
 }

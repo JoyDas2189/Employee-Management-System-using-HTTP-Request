@@ -3,61 +3,19 @@
   <form #productForm="ngForm" (ngSubmit)="onProductCreate(productForm.value)">
     <h2>Employee Form</h2>
     <label for="eName">Employee Name</label>
-    <input
-      type="text"
-      name="eName"
-      class="eName"
-      placeholder="Enter Name..."
-      ngModel
-    />
+    <input type="text" name="eName" class="eName" ngModel />
     <label for="eAge">Employee Age</label>
-    <input
-      type="number"
-      name="eAge"
-      id="eAge"
-      placeholder="Employee Age..."
-      ngModel
-    />
+    <input type="number" name="eAge" id="eAge" ngModel />
     <label for="eEmail">Employee Email</label>
-    <input
-      type="email"
-      name="eEmail"
-      id="eEmail"
-      placeholder="Employee Email..."
-      ngModel
-    />
+    <input type="email" name="eEmail" id="eEmail" ngModel />
     <label for="ePosition">Employee Position</label>
-    <input
-      type="text"
-      name="ePosition"
-      id="ePosition"
-      placeholder="Employee Position..."
-      ngModel
-    />
+    <input type="text" name="ePosition" id="ePosition" ngModel />
     <label for="eLocation">Employee Location</label>
-    <input
-      type="text"
-      name="eLocation"
-      id="eLocation"
-      placeholder="Employee Location..."
-      ngModel
-    />
+    <input type="text" name="eLocation" id="eLocation" ngModel />
     <label for="ePostal">Employee Postal</label>
-    <input
-      type="number"
-      name="ePostal"
-      id="ePostal"
-      placeholder="Employee Postal..."
-      ngModel
-    />
+    <input type="number" name="ePostal" id="ePostal" ngModel />
     <label for="eCity">Employee City</label>
-    <input
-      type="text"
-      name="eCity"
-      id="eCity"
-      placeholder="Employee City..."
-      ngModel
-    />
+    <input type="text" name="eCity" id="eCity" ngModel />
     <input type="submit" value="Submit" />
   </form>
 </div>
@@ -125,8 +83,12 @@
     <p><span class="label">City:</span> {{ emp.eCity }}</p>
 
     <div class="employee-actions">
-      <button class="btn btn-edit">Edit</button>
-      <button class="btn btn-delete">Delete</button>
+      <button type="button" class="btn btn-update" (click)="editEmployee(emp.id)">
+        Update
+      </button>
+      <button class="btn btn-delete" (click)="deleteEmployee(emp.id)">
+        Delete
+      </button>
     </div>
   </div>
 </div>
