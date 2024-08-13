@@ -40,12 +40,13 @@ export class HttpRequestComponent implements OnInit {
     });
     this.form.setValue({
       eName: currentEmpoyee.eName,
-      eAge: currentEmpoyee.eAge,
+      eDob: currentEmpoyee.eDob,
       eEmail: currentEmpoyee.eEmail,
       ePosition: currentEmpoyee.ePosition,
       eLocation: currentEmpoyee.eLocation,
       ePostal: currentEmpoyee.ePostal,
       eCity: currentEmpoyee.eCity,
+      eSalary: currentEmpoyee.eSalary,
     });
     this.editMode = true;
     this.editingEmployeeId = id;
@@ -53,21 +54,22 @@ export class HttpRequestComponent implements OnInit {
 
   onEmployeeAdd(employees: {
     eName: string;
-    eAge: number;
+    eDob: Date;
     eEmail: string;
     ePosition: string;
     eLocation: string;
     ePostal: number;
     eCity: string;
+    eSalary: number;
   }) {
     if (this.editMode && this.editingEmployeeId) {
       this.employeeService
         .updateEmployee(this.editingEmployeeId, employees)
         .subscribe(() => {
           this.getEmployees();
-          this.form.reset();
           this.editMode = false;
           this.editingEmployeeId = null;
+          this.form.reset();
         });
     } else {
       this.employeeService.addEmployee(employees).subscribe(() => {
@@ -75,5 +77,22 @@ export class HttpRequestComponent implements OnInit {
         this.form.reset();
       });
     }
+  }
+  calcuteAge(dob: string) {
+    const birthDate = new Date(dob);
+    const currentDate = new Date();
+
+    let age = currentDate.getFullYear() - birthDate.getFullYear();
+
+    const monthDiff = currentDate.getMonth() - birthDate.getMonth();
+
+    if (
+      monthDiff < 0 ||
+      (monthDiff === 0 && currentDate.getDate() < birthDate.getDate())
+    ) {
+      age--;
+    }
+
+    return age;
   }
 }

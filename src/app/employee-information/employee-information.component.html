@@ -1,0 +1,57 @@
+<div class="container">
+  <h1>Employee List</h1>
+  <table class="pipetable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Date of Birth</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Position</th>
+        <th>Location</th>
+        <th>Postal</th>
+        <th>City</th>
+        <th>Salary(LPA)</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employees">
+        <td>{{ emp.eName }}</td>
+        <td>{{ emp.eDob | date : "longDate" }}</td>
+        <td>{{ calcuteAge(emp.eDob) }}</td>
+        <td>{{ emp.eEmail }}</td>
+        <td>{{ emp.ePosition | uppercase }}</td>
+        <td>{{ emp.eLocation }}</td>
+        <td>{{ emp.ePostal }}</td>
+        <td>{{ emp.eCity }}</td>
+        <td>{{ emp.eSalary | currency }}</td>
+        <td>
+          <button class="viewDetails-btn" (click)="employeeDetails(emp)">
+            View Details
+          </button>
+          <button class="editDetails-btn">Edit Details</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="showDetails" class="employee-details">
+    <h2>Employee Details</h2>
+    <div class="employee-detail-description">
+      <p><strong>Name:</strong> {{ selectedEmployee.eName }}</p>
+      <p>
+        <strong>Date of Birth:</strong>
+        {{ selectedEmployee.eDob | date : "longDate" }}
+      </p>
+      <p><strong>Age:</strong> {{ calcuteAge(selectedEmployee.eDob) }}</p>
+      <p><strong>Email:</strong> {{ selectedEmployee.eEmail }}</p>
+      <p><strong>Position:</strong> {{ selectedEmployee.ePosition }}</p>
+      <p><strong>Location:</strong> {{ selectedEmployee.eLocation }}</p>
+      <p><strong>Postal:</strong> {{ selectedEmployee.ePostal }}</p>
+      <p><strong>City:</strong> {{ selectedEmployee.eCity }}</p>
+      <p><strong>Salary:</strong> {{ selectedEmployee.eSalary | currency }}</p>
+      <button (click)="closeDetails()" class="close-btn">Close</button>
+    </div>
+  </div>
+</div>

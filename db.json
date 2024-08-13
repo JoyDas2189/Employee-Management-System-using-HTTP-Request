@@ -1,0 +1,25 @@
+{
+  "employee": [
+    {
+      "name": "Joy Das",
+      "email": "dasjoy365d@gmail.com",
+      "dob": "1999-10-26T18:00:00.000Z",
+      "gender": "Male",
+      "education": "BSc",
+      "companyName": "SoftifyBD",
+      "experience": 2,
+      "package": 1,
+      "id": "3e93"
+    },
+    {
+      "id": "3fce",
+      "eName": "asdf",
+      "eAge": 314,
+      "eEmail": "asdf",
+      "ePosition": "asdf",
+      "eLocation": "asf",
+      "ePostal": 123,
+      "eCity": "asdf"
+    }
+  ]
+}

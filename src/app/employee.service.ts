@@ -30,7 +30,7 @@ export class EmployeeService {
 
   addEmployee(employee: {
     eName: string;
-    eAge: number;
+    eDob: Date;
     eEmail: string;
     ePosition: string;
     eLocation: string;
@@ -44,7 +44,7 @@ export class EmployeeService {
     id: string,
     employee: {
       eName: string;
-      eAge: number;
+      eDob: Date;
       eEmail: string;
       ePosition: string;
       eLocation: string;

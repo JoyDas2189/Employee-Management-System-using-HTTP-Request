@@ -1,46 +1,127 @@
 <div class="container">
   <form #employeeForm="ngForm" (ngSubmit)="onEmployeeAdd(employeeForm.value)">
     <h2>Employee Form</h2>
-    <label for="eName">Employee Name</label>
-    <input type="text" name="eName" class="eName" ngModel />
-    <label for="eAge">Employee Age</label>
-    <input type="number" name="eAge" id="eAge" ngModel />
-    <label for="eEmail">Employee Email</label>
-    <input type="email" name="eEmail" id="eEmail" ngModel />
-    <label for="ePosition">Employee Position</label>
-    <input type="text" name="ePosition" id="ePosition" ngModel />
-    <label for="eLocation">Employee Location</label>
-    <input type="text" name="eLocation" id="eLocation" ngModel />
-    <label for="ePostal">Employee Postal</label>
-    <input type="number" name="ePostal" id="ePostal" ngModel />
-    <label for="eCity">Employee City</label>
-    <input type="text" name="eCity" id="eCity" ngModel />
+    <label for="eName"> Name</label>
+    <input
+      type="text"
+      name="eName"
+      class="eName"
+      required
+      ngModel
+      #eName="ngModel"
+    />
+    <div>
+      <small class="warningMessege" *ngIf="eName.invalid && eName.touched"
+        >Name is required</small
+      >
+    </div>
+
+    <label for="eDob">Date of Birth</label>
+    <input type="date" name="eDob" id="eDob" required ngModel #eDob="ngModel" />
+    <div>
+      <small class="warningMessege" *ngIf="eDob.invalid && eDob.touched"
+        >Date of Birth required</small
+      >
+    </div>
+
+    <label for="eEmail"> Email</label>
+    <input
+      type="email"
+      name="eEmail"
+      id="eEmail"
+      required
+      ngModel
+      #eEmail="ngModel"
+    />
+    <div>
+      <small class="warningMessege" *ngIf="eEmail.invalid && eEmail.touched"
+        >Email is required</small
+      >
+    </div>
+
+    <label for="ePosition"> Position</label>
+    <input
+      type="text"
+      name="ePosition"
+      id="ePosition"
+      required
+      ngModel
+      #ePosition="ngModel"
+    />
+    <div>
+      <small
+        class="warningMessege"
+        *ngIf="ePosition.invalid && ePosition.touched"
+        >Position is required</small
+      >
+    </div>
+
+    <label for="eLocation"> Location</label>
+    <input
+      type="text"
+      name="eLocation"
+      id="eLocation"
+      required
+      ngModel
+      #eLocation="ngModel"
+    />
+    <div>
+      <small
+        class="warningMessege"
+        *ngIf="eLocation.invalid && eLocation.touched"
+        >Position is required</small
+      >
+    </div>
+
+    <label for="ePostal"> Postal</label>
+    <input
+      type="number"
+      name="ePostal"
+      id="ePostal"
+      required
+      ngModel
+      #ePostal="ngModel"
+    />
+    <div>
+      <small class="warningMessege" *ngIf="ePostal.invalid && ePostal.touched"
+        >Postal is required</small
+      >
+    </div>
+
+    <label for="eCity"> City</label>
+    <input
+      type="text"
+      name="eCity"
+      id="eCity"
+      required
+      ngModel
+      #eCity="ngModel"
+    />
+    <div>
+      <small class="warningMessege" *ngIf="eCity.invalid && eCity.touched"
+        >City is required</small
+      >
+    </div>
+
+    <label for="eSalary"> Salary</label>
+    <input
+      type="number"
+      name="eSalary"
+      id="eSalary"
+      required
+      ngModel
+      #eSalary="ngModel"
+    />
+    <div>
+      <small class="warningMessege" *ngIf="eSalary.invalid && eSalary.touched"
+        >Salary is required</small
+      >
+    </div>
+
     <input
       type="submit"
+      [disabled]="!employeeForm.valid"
       value=" {{ editMode ? 'Update Employee' : 'Add Employee' }} "
     />
   </form>
-</div>
-<div class="employeeList">
-  <div *ngFor="let emp of emps; index as i" class="employee">
-    <p class="employee-title">
-      <strong>Employee {{ i + 1 }}:</strong>
-    </p>
-    <p><span class="label">Name:</span> {{ emp.eName }}</p>
-    <p><span class="label">Age:</span> {{ emp.eAge }}</p>
-    <p><span class="label">Email:</span> {{ emp.eEmail }}</p>
-    <p><span class="label">Position:</span> {{ emp.ePosition }}</p>
-    <p><span class="label">Location:</span> {{ emp.eLocation }}</p>
-    <p><span class="label">Postal:</span> {{ emp.ePostal }}</p>
-    <p><span class="label">City:</span> {{ emp.eCity }}</p>
-
-    <div class="employee-actions">
-      <button type="button" class="btn btn-edit" (click)="editEmployee(emp.id)">
-        Update
-      </button>
-      <button class="btn btn-delete" (click)="deleteEmployee(emp.id)">
-        Delete
-      </button>
-    </div>
-  </div>
 </div>
