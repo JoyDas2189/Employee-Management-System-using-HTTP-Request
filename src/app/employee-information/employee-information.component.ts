@@ -43,4 +43,7 @@ export class EmployeeInformationComponent implements OnInit {
   closeDetails() {
     this.showDetails = false;
   }
+  editEmployees () {
+    
+  }
 }

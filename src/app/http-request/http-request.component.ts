@@ -95,4 +95,5 @@ export class HttpRequestComponent implements OnInit {
 
     return age;
   }
+  
 }

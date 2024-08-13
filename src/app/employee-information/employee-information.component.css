@@ -1,12 +1,18 @@
+
 .container__table {
     border: 1px solid #333;
     text-align: center;
 }
 .container {
-    max-width: 100%;
-    margin: 0 auto;
+    max-width: 80%;
+    margin: 20px auto;
     padding: 20px;
     font-family: Arial, sans-serif;
+  }
+  .container-heading{
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: Arial, Helvetica, sans-serif;
   }
   
   .pipetable {
@@ -23,7 +29,7 @@
   }
   
   .pipetable th {
-    background-color: #2164ca;
+    background-color: #808D7C;
     color: white;
     text-transform: uppercase;
   }

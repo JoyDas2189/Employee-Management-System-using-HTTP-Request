@@ -1,5 +1,5 @@
 .container {
-    background-color: blue;
+    background-color: #5F6F65;
     font-size: 30px;
     text-align: center;
 }
@@ -7,8 +7,10 @@
     color: aliceblue;
 }
 .navBar {
-    background-color: #2164ca;
+    background-color: #808D7C;
     padding: 10px 20px;
+    display: flex;
+    justify-content: space-around;
   }
   
   .navBar ul {
@@ -32,14 +34,15 @@
     padding: 10px 15px; 
     border-radius: 5px; 
     transition: background-color 0.3s ease; 
+    font-family: Arial, Helvetica, sans-serif;
   }
   
   .navBar ul li a:hover {
-    background-color: #437bff; 
+    background-color: #C9DABF; 
   }
   
   .navBar ul li a.active {
-    background-color: #437bff; 
-    color: white;
+    background-color: #C9DABF; 
+    color: #5F6F65;
   }
   
