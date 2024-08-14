@@ -55,4 +55,9 @@ export class EmployeeService {
     const updateUrl = `https://angularlearn-b8615-default-rtdb.firebaseio.com/employees/${id}.json`;
     return this.http.put(updateUrl, employee);
   }
+
+  getEmployee(employeeId: string) {
+    return this.http.get(`https://angularlearn-b8615-default-rtdb.firebaseio.com/employees/${employeeId}.json`);
+  }
+  
 }

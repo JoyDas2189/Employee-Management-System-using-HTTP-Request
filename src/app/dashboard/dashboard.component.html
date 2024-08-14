@@ -1,7 +1,6 @@
 <div class="dashboard">
   <h1 class="dashboard-title">Employee Dashboard</h1>
 
-  <!-- Metric Cards -->
   <div class="metrics">
     <div class="card">
       <h2>Total Employees</h2>
@@ -9,11 +8,7 @@
     </div>
     <div class="card">
       <h2>Average Salary</h2>
-      <!-- <p>{{ averageSalary | currency }}</p> -->
-    </div>
-    <div class="card">
-      <!-- <h2>Employees in {{ selectedCity }}</h2> -->
-      <!-- <p>{{ employeesInCity }}</p> -->
+      <p>{{ averageSalary | currency }}</p>
     </div>
   </div>
 </div>
@@ -27,10 +22,10 @@
         height="250px"
         width="250px"
       />
-      <img src="" alt="" />
+      <img src="../../assets/form.jpg" alt="" />
     </div>
     <h3 class="empFormCard-heading">Employee Form</h3>
-    <p class="empFormCard-description">View Employee Form </p>
+    <p class="empFormCard-description">View Employee Form</p>
     <div>
       <button class="empFormCard-btn" (click)="openFormComponent()">
         Click Here
@@ -48,26 +43,11 @@
       <img src="" alt="" />
     </div>
     <h3 class="empFormCard-heading">Employee Information</h3>
-    <p class="empFormCard-description">View Employee Information 
-    </p>
+    <p class="empFormCard-description">View Employee Information</p>
     <div>
-      <button class="empFormCard-btn" (click)="openInfoComponent()">Click Here</button>
-    </div>
-  </div>
-  <div class="empFormCard">
-    <div class="">
-      <img
-        class="empFormCard-Image"
-        src="../assets/form.jpg"
-        height="250px"
-        width="250px"
-      />
-      <img src="" alt="" />
-    </div>
-    <h3 class="empFormCard-heading">Employee Form</h3>
-    <p class="empFormCard-description">To view Employee Form click here</p>
-    <div>
-      <button class="empFormCard-btn">Click Here</button>
+      <button class="empFormCard-btn" (click)="openInfoComponent()">
+        Click Here
+      </button>
     </div>
   </div>
 </div>

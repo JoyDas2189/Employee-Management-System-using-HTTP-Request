@@ -45,7 +45,7 @@
       name="ePosition"
       id="ePosition"
       required
-      ngModel
+      [(ngModel)]="emps.ePosition"
       #ePosition="ngModel"
     />
     <div>
@@ -124,4 +124,33 @@
       value=" {{ editMode ? 'Update Employee' : 'Add Employee' }} "
     />
   </form>
+</div>
+<div class="employee">
+  <div *ngIf="emps.length > 0">
+    <div class="employee-list" *ngFor="let emp of emps; index as i">
+      <p>
+        <strong>Employee {{ i + 1 }}:</strong>
+      </p>
+      <p><span class="label">Name:</span> {{ emp.eName }}</p>
+      <p><span class="label">Age:</span> {{ calcuteAge(emp.eDob) }}</p>
+      <p><span class="label">Email:</span> {{ emp.eEmail }}</p>
+      <p><span class="label">Position:</span> {{ emp.ePosition }}</p>
+      <p><span class="label">Location:</span> {{ emp.eLocation }}</p>
+      <p><span class="label">Postal:</span> {{ emp.ePostal }}</p>
+      <p><span class="label">City:</span> {{ emp.eCity }}</p>
+
+      <div class="employee-actions">
+        <button class="btn btn-edit" (click)="editEmployee(emp.id)">
+          Edit
+        </button>
+        <button class="btn btn-delete" (click)="deleteEmployee(emp.id)">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="emps.length === 0">
+    <p>No employees found.</p>
+  </div>
 </div>

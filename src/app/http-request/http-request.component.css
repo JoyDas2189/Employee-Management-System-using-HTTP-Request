@@ -132,3 +132,54 @@
   .warningMessege {
     color: red;
   }
+  .employee-list {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .employee-list p {
+    margin: 5px 0;
+    color: #333;
+  }
+  
+  .employee-list .label {
+    font-weight: bold;
+  }
+  
+  .employee-actions {
+    margin-top: 10px;
+  }
+  
+  .employee-actions .btn {
+    margin-right: 10px;
+  }
+  
+  .btn-edit {
+    background-color: #28a745;
+  }
+  
+  .btn-edit:hover {
+    background-color: #218838;
+  }
+  
+  .btn-delete {
+    background-color: #dc3545;
+  }
+  
+  .btn-delete:hover {
+    background-color: #c82333;
+  }
+  
+  hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 20px 0;
+  }
+  
+  p {
+    color: #555;
+  }

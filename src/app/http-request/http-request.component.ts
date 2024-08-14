@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { EmployeeService } from '../employee.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-http-request',
@@ -10,11 +11,21 @@ import { EmployeeService } from '../employee.service';
 export class HttpRequestComponent implements OnInit {
   allEmployees: any[] = [];
   emps: any;
+  id = '';
   editMode: boolean = false;
   editingEmployeeId: string | null = null;
   @ViewChild('employeeForm') form: NgForm;
 
-  constructor(private employeeService: EmployeeService) {}
+  constructor(
+    private employeeService: EmployeeService,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.activatedRoute.params.subscribe((res) => {
+      this.id = res['id'];
+      if (this.id) {
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.getEmployees();
@@ -95,5 +106,4 @@ export class HttpRequestComponent implements OnInit {
 
     return age;
   }
-  
 }

@@ -10,6 +10,7 @@ import { ErrorComponent } from './error/error.component';
 import { EmployeeInformationComponent } from './employee-information/employee-information.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmployeeFormComponent } from './employee-form/employee-form.component';
+import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { EmployeeFormComponent } from './employee-form/employee-form.component';
     ErrorComponent,
     EmployeeInformationComponent,
     DashboardComponent,
-    EmployeeFormComponent
+    EmployeeFormComponent,
+    EmployeeDetailsComponent
   ],
   imports: [
     BrowserModule,

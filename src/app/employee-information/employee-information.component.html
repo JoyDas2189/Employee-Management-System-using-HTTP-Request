@@ -4,39 +4,33 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Date of Birth</th>
-        <th>Age</th>
         <th>Email</th>
         <th>Position</th>
         <th>Location</th>
-        <th>Postal</th>
         <th>City</th>
-        <th>Salary(LPA)</th>
         <th>Action</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let emp of employees">
         <td>{{ emp.eName }}</td>
-        <td>{{ emp.eDob | date : "longDate" }}</td>
-        <td>{{ calcuteAge(emp.eDob) }}</td>
         <td>{{ emp.eEmail }}</td>
         <td>{{ emp.ePosition | uppercase }}</td>
         <td>{{ emp.eLocation }}</td>
-        <td>{{ emp.ePostal }}</td>
         <td>{{ emp.eCity }}</td>
-        <td>{{ emp.eSalary | currency }}</td>
         <td>
-          <button class="viewDetails-btn" (click)="employeeDetails(emp)">
-            View Details
+          <button class="viewDetails-btn" (click)="employeeDetails(emp.id)">
+            View
           </button>
-          <button class="editDetails-btn" (click)="editEmployees()">Edit Details</button>
+          <button class="editDetails-btn" (click)="editEmployee(emp.id)">
+            Edit
+          </button>
         </td>
       </tr>
     </tbody>
   </table>
 
-  <div *ngIf="showDetails" class="employee-details">
+  <!-- <div *ngIf="showDetails" class="employee-details">
     <h2>Employee Details</h2>
     <div class="employee-detail-description">
       <p><strong>Name:</strong> {{ selectedEmployee.eName }}</p>
@@ -54,4 +48,5 @@
       <button (click)="closeDetails()" class="close-btn">Close</button>
     </div>
   </div>
+</div> -->
 </div>

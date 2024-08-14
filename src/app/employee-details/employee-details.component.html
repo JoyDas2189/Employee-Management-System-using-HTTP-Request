@@ -1,0 +1,14 @@
+<div>
+  <div class="employee-card">
+    <h2 class="employee-card-heading">{{ user.eName }}</h2>
+
+    <p><strong>Date of Birth:</strong> {{ user.eDob | date : "longDate" }}</p>
+    <p><strong>Age:</strong> {{ calcuteAge(user.eDob) }}</p>
+    <p><strong>Email:</strong> {{ user.eEmail }}</p>
+    <p><strong>Position:</strong> {{ user.ePosition }}</p>
+    <p><strong>Location:</strong> {{ user.eLocation }}</p>
+    <p><strong>Postal:</strong> {{ user.ePostal }}</p>
+    <p><strong>City:</strong> {{ user.eCity }}</p>
+    <p><strong>Salary:</strong> {{ user.eSalary | currency }}</p>
+  </div>
+</div>

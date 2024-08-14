@@ -11,6 +11,7 @@ export class DashboardComponent implements OnInit {
   employees: any[] = [];
   emps: any;
   totalEmployees: number = 0;
+  averageSalary: number = 0;
 
   constructor(
     private employeeService: EmployeeService,
@@ -24,7 +25,14 @@ export class DashboardComponent implements OnInit {
     this.employeeService.getEmployees().subscribe((res) => {
       this.employees = res;
       this.totalEmployees = this.employees.length;
+      this.averageSalary = this.calculateAverageSalary();
     })
+  }
+
+  calculateAverageSalary() {
+    const totalSalary = this.employees.reduce((sum, emp) => sum + emp.eSalary, 0);
+
+    return totalSalary / this.totalEmployees;
   }
 
   
