@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -57,7 +57,13 @@ export class EmployeeService {
   }
 
   getEmployee(employeeId: string) {
-    return this.http.get(`https://angularlearn-b8615-default-rtdb.firebaseio.com/employees/${employeeId}.json`);
+    return this.http.get(
+      `https://angularlearn-b8615-default-rtdb.firebaseio.com/employees/${employeeId}.json`
+    );
   }
-  
+  getEmployeeById(id: string) {
+    return this.http.get(
+      `https://angularlearn-b8615-default-rtdb.firebaseio.com/employees/${id}.json`
+    );
+  }
 }

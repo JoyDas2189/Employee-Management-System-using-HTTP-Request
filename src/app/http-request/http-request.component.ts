@@ -23,6 +23,7 @@ export class HttpRequestComponent implements OnInit {
     this.activatedRoute.params.subscribe((res) => {
       this.id = res['id'];
       if (this.id) {
+        this.editMode = true;
       }
     });
   }

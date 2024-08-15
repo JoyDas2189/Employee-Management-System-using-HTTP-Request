@@ -13,6 +13,9 @@ export class DashboardComponent implements OnInit {
   totalEmployees: number = 0;
   averageSalary: number = 0;
 
+  image: string = "../assets/luffy.jpg";
+
+
   constructor(
     private employeeService: EmployeeService,
     private router: Router
