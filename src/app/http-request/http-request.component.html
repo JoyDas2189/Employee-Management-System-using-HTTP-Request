@@ -7,7 +7,7 @@
       name="eName"
       class="eName"
       required
-      ngModel
+      [(ngModel)]="user.eName"
       #eName="ngModel"
     />
     <div>
@@ -17,7 +17,14 @@
     </div>
 
     <label for="eDob">Date of Birth</label>
-    <input type="date" name="eDob" id="eDob" required ngModel #eDob="ngModel" />
+    <input
+      type="date"
+      name="eDob"
+      id="eDob"
+      required
+      [(ngModel)]="user.eDob"
+      #eDob="ngModel"
+    />
     <div>
       <small class="warningMessege" *ngIf="eDob.invalid && eDob.touched"
         >Date of Birth required</small
@@ -30,7 +37,7 @@
       name="eEmail"
       id="eEmail"
       required
-      ngModel
+      [(ngModel)]="user.eEmail"
       #eEmail="ngModel"
     />
     <div>
@@ -45,7 +52,7 @@
       name="ePosition"
       id="ePosition"
       required
-      [(ngModel)]="emps.ePosition"
+      [(ngModel)]="user.ePosition"
       #ePosition="ngModel"
     />
     <div>
@@ -62,7 +69,7 @@
       name="eLocation"
       id="eLocation"
       required
-      ngModel
+      [(ngModel)]="user.eLocation"
       #eLocation="ngModel"
     />
     <div>
@@ -79,7 +86,7 @@
       name="ePostal"
       id="ePostal"
       required
-      ngModel
+      [(ngModel)]="user.ePostal"
       #ePostal="ngModel"
     />
     <div>
@@ -94,7 +101,7 @@
       name="eCity"
       id="eCity"
       required
-      ngModel
+      [(ngModel)]="user.eCity"
       #eCity="ngModel"
     />
     <div>
@@ -109,7 +116,7 @@
       name="eSalary"
       id="eSalary"
       required
-      ngModel
+      [(ngModel)]="user.eSalary"
       #eSalary="ngModel"
     />
     <div>
@@ -126,7 +133,7 @@
   </form>
 </div>
 <div class="employee">
-  <div *ngIf="emps.length > 0">
+  <div *ngIf="emps?.length > 0">
     <div class="employee-list" *ngFor="let emp of emps; index as i">
       <p>
         <strong>Employee {{ i + 1 }}:</strong>
@@ -150,7 +157,7 @@
     </div>
   </div>
 
-  <div *ngIf="emps.length === 0">
+  <div *ngIf="emps?.length === 0">
     <p>No employees found.</p>
   </div>
 </div>

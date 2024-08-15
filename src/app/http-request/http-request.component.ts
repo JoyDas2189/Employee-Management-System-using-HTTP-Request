@@ -10,10 +10,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HttpRequestComponent implements OnInit {
   allEmployees: any[] = [];
-  emps: any;
+  emps: any = null;
   id = '';
   editMode: boolean = false;
   editingEmployeeId: string | null = null;
+  employeeId: any;
+  employee: any;
+  user : any;
+  
   @ViewChild('employeeForm') form: NgForm;
 
   constructor(
@@ -28,9 +32,9 @@ export class HttpRequestComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.getEmployees();
-  }
+  // ngOnInit(): void {
+  //   this.getEmployees();
+  // }
 
   getEmployees() {
     this.employeeService.getEmployees().subscribe((res) => {
@@ -64,6 +68,48 @@ export class HttpRequestComponent implements OnInit {
     this.editingEmployeeId = id;
   }
 
+  calcuteAge(dob: string) {
+    const birthDate = new Date(dob);
+    const currentDate = new Date();
+
+    let age = currentDate.getFullYear() - birthDate.getFullYear();
+
+    const monthDiff = currentDate.getMonth() - birthDate.getMonth();
+
+    if (
+      monthDiff < 0 ||
+      (monthDiff === 0 && currentDate.getDate() < birthDate.getDate())
+    ) {
+      age--;
+    }
+
+    return age;
+  }
+
+  ngOnInit(): void {
+    this.employeeId = this.activatedRoute.snapshot.params['id'];
+    if (this.employeeId) {
+      this.editMode = true;
+      this.editingEmployeeId = this.employeeId;
+      this.employeeService
+        .getEmployee(this.employeeId)
+        .subscribe((employees) => {
+          this.user = employees;
+          this.form.setValue({
+            eName: this.user.eName,
+            eDob: this.user.eDob,
+            eEmail: this.user.eEmail,
+            ePosition: this.user.ePosition,
+            eLocation: this.user.eLocation,
+            ePostal: this.user.ePostal,
+            eCity: this.user.eCity,
+            eSalary: this.user.eSalary,
+          });
+        });
+    } else {
+      this.editMode = false;
+    }
+  }
   onEmployeeAdd(employees: {
     eName: string;
     eDob: Date;
@@ -84,27 +130,11 @@ export class HttpRequestComponent implements OnInit {
           this.form.reset();
         });
     } else {
-      this.employeeService.addEmployee(employees).subscribe(() => {
+      console.log(this.form.value);
+      this.employeeService.addEmployee(this.form.value).subscribe(() => {
         this.getEmployees();
         this.form.reset();
       });
     }
-  }
-  calcuteAge(dob: string) {
-    const birthDate = new Date(dob);
-    const currentDate = new Date();
-
-    let age = currentDate.getFullYear() - birthDate.getFullYear();
-
-    const monthDiff = currentDate.getMonth() - birthDate.getMonth();
-
-    if (
-      monthDiff < 0 ||
-      (monthDiff === 0 && currentDate.getDate() < birthDate.getDate())
-    ) {
-      age--;
-    }
-
-    return age;
   }
 }

@@ -10,8 +10,8 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'employeeForm', component: HttpRequestComponent },
-  { path: 'employeeForm/:id', component: HttpRequestComponent },
+  { path: 'employeeForm', component: EmployeeFormComponent },
+  { path: 'employeeForm/:id', component: EmployeeFormComponent },
   { path: 'employeeInformation', component: EmployeeInformationComponent },
   { path: 'employeeDetails/:id', component: EmployeeDetailsComponent },
   { path: '**', component: ErrorComponent },

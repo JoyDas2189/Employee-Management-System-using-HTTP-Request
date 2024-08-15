@@ -6,9 +6,10 @@
     <p><strong>Age:</strong> {{ calcuteAge(user.eDob) }}</p>
     <p><strong>Email:</strong> {{ user.eEmail }}</p>
     <p><strong>Position:</strong> {{ user.ePosition }}</p>
-    <p><strong>Location:</strong> {{ user.eLocation }}</p>
-    <p><strong>Postal:</strong> {{ user.ePostal }}</p>
-    <p><strong>City:</strong> {{ user.eCity }}</p>
+    <p><strong>Location:</strong> {{ user.eAddress.eLocation }}</p>
+    <p><strong>Postal:</strong> {{ user.eAddress.ePostal }}</p>
+    <p><strong>City:</strong> {{ user.eAddress.eCity }}</p>
     <p><strong>Salary:</strong> {{ user.eSalary | currency }}</p>
+    <p><strong>Skills:</strong> {{ user.eSkills }}</p>
   </div>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../employee.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EmloyeeInformationService } from '../emloyee-information.service';
 
 @Component({
   selector: 'app-employee-information',
@@ -16,7 +17,7 @@ export class EmployeeInformationComponent implements OnInit {
   user: any;
 
   constructor(
-    private employeeServece: EmployeeService,
+    private employeeServece: EmloyeeInformationService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
@@ -30,6 +31,12 @@ export class EmployeeInformationComponent implements OnInit {
       this.user = user;
     });
   }
+  getEmployees() {
+    this.employeeServece.getEmployees().subscribe((data) => {
+      this.employees = data;
+    });
+  }
+
   calcuteAge(dob: string) {
     const birthDate = new Date(dob);
     const currentDate = new Date();
@@ -56,5 +63,10 @@ export class EmployeeInformationComponent implements OnInit {
 
   editEmployee(id: string) {
     this.router.navigate(['employeeForm', id]);
+  }
+  deleteEmployee(id: any) {
+    this.employeeServece.deleteEmployee(id).subscribe((res) => {
+      this.getEmployees();
+    });
   }
 }

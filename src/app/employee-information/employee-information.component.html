@@ -16,37 +16,20 @@
         <td>{{ emp.eName }}</td>
         <td>{{ emp.eEmail }}</td>
         <td>{{ emp.ePosition | uppercase }}</td>
-        <td>{{ emp.eLocation }}</td>
-        <td>{{ emp.eCity }}</td>
+        <td>{{ emp.eAddress.eLocation }}</td>
+        <td>{{ emp.eAddress.eCity }}</td>
         <td>
           <button class="viewDetails-btn" (click)="employeeDetails(emp.id)">
             View
           </button>
-          <button class="editDetails-btn" (click)="editEmployee(emp.id)">
+          <!-- <button class="editDetails-btn" (click)="editEmployee(emp.id)">
             Edit
+          </button> -->
+          <button class="deleteDetails-btn" (click)="deleteEmployee(emp.id)">
+            Delete
           </button>
         </td>
       </tr>
     </tbody>
   </table>
-
-  <!-- <div *ngIf="showDetails" class="employee-details">
-    <h2>Employee Details</h2>
-    <div class="employee-detail-description">
-      <p><strong>Name:</strong> {{ selectedEmployee.eName }}</p>
-      <p>
-        <strong>Date of Birth:</strong>
-        {{ selectedEmployee.eDob | date : "longDate" }}
-      </p>
-      <p><strong>Age:</strong> {{ calcuteAge(selectedEmployee.eDob) }}</p>
-      <p><strong>Email:</strong> {{ selectedEmployee.eEmail }}</p>
-      <p><strong>Position:</strong> {{ selectedEmployee.ePosition }}</p>
-      <p><strong>Location:</strong> {{ selectedEmployee.eLocation }}</p>
-      <p><strong>Postal:</strong> {{ selectedEmployee.ePostal }}</p>
-      <p><strong>City:</strong> {{ selectedEmployee.eCity }}</p>
-      <p><strong>Salary:</strong> {{ selectedEmployee.eSalary | currency }}</p>
-      <button (click)="closeDetails()" class="close-btn">Close</button>
-    </div>
-  </div>
-</div> -->
 </div>

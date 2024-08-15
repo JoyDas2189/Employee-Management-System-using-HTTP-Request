@@ -1,25 +1,38 @@
 {
   "employee": [
     {
-      "name": "Joy Das",
-      "email": "dasjoy365d@gmail.com",
-      "dob": "1999-10-26T18:00:00.000Z",
-      "gender": "Male",
-      "education": "BSc",
-      "companyName": "SoftifyBD",
-      "experience": 2,
-      "package": 1,
-      "id": "3e93"
+      "eName": "Joy Das",
+      "eDob": "1999-10-27",
+      "eEmail": "joy.softifybd@gmail.com",
+      "ePosition": "Intern",
+      "eAddress": {
+        "eLocation": "Sutrapur",
+        "ePostal": 1100,
+        "eCity": "Dhaka"
+      },
+      "eSalary": 1200,
+      "eSkills": [
+        "Angular",
+        "TypeScript"
+      ],
+      "id": "54ba"
     },
     {
-      "id": "3fce",
-      "eName": "asdf",
-      "eAge": 314,
-      "eEmail": "asdf",
-      "ePosition": "asdf",
-      "eLocation": "asf",
-      "ePostal": 123,
-      "eCity": "asdf"
+      "eName": "Barkat Ali",
+      "eDob": "1975-05-15",
+      "eEmail": "barkarali.softifybd@gmail.com",
+      "ePosition": "Senior",
+      "eAddress": {
+        "eLocation": "Sreenagar",
+        "ePostal": 1234,
+        "eCity": "Dhaka"
+      },
+      "eSalary": 1234,
+      "eSkills": [
+        "ppt",
+        "word"
+      ],
+      "id": "df0e"
     }
   ]
 }

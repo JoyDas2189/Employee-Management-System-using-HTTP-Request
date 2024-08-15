@@ -6,8 +6,7 @@ import { map, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class EmployeeService {
-  private baseUrl =
-    'https://angularlearn-b8615-default-rtdb.firebaseio.com/employees.json';
+  private baseUrl = 'http://localhost:3000/employee';
 
   constructor(private http: HttpClient) {}
 
@@ -23,8 +22,8 @@ export class EmployeeService {
     );
   }
 
-  deleteEmployee(id: string) {
-    const deleteUrl = `https://angularlearn-b8615-default-rtdb.firebaseio.com/employees/${id}.json`;
+  deleteEmployee(id: any) {
+    const deleteUrl = `http://localhost:3000/employee/${id}`;
     return this.http.delete(deleteUrl);
   }
 
@@ -41,7 +40,7 @@ export class EmployeeService {
   }
 
   updateEmployee(
-    id: string,
+    id: any,
     employee: {
       eName: string;
       eDob: Date;
@@ -52,18 +51,14 @@ export class EmployeeService {
       eCity: string;
     }
   ) {
-    const updateUrl = `https://angularlearn-b8615-default-rtdb.firebaseio.com/employees/${id}.json`;
+    const updateUrl = `http://localhost:3000/employee/${id}`;
     return this.http.put(updateUrl, employee);
   }
 
-  getEmployee(employeeId: string) {
-    return this.http.get(
-      `https://angularlearn-b8615-default-rtdb.firebaseio.com/employees/${employeeId}.json`
-    );
+  getEmployee(id: any) {
+    return this.http.get(`http://localhost:3000/employee/${id}`);
   }
-  getEmployeeById(id: string) {
-    return this.http.get(
-      `https://angularlearn-b8615-default-rtdb.firebaseio.com/employees/${id}.json`
-    );
+  getEmployeeById(id: any) {
+    return this.http.get(`http://localhost:3000/employee/${id}`);
   }
 }

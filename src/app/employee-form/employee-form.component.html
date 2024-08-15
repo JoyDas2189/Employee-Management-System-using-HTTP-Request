@@ -1,0 +1,219 @@
+<div class="container">
+  <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+    <h2>Employee Form</h2>
+    <label for="eName"> Name</label>
+    <input type="text" name="eName" class="eName" formControlName="eName" />
+    <div>
+      <small
+        *ngIf="
+          !reactiveForm.get('eName')?.valid &&
+          reactiveForm.get('eName')?.touched
+        "
+        class="error-message"
+        >Invalid Name</small
+      >
+    </div>
+
+    <label for="eDob">Date of Birth</label>
+    <input type="date" name="eDob" id="eDob" formControlName="eDob" />
+    <div>
+      <small
+        *ngIf="
+          !reactiveForm.get('eDob')?.valid && reactiveForm.get('eDob')?.touched
+        "
+        class="error-message"
+        >Invalid Date of Birth</small
+      >
+    </div>
+
+    <label for="eEmail"> Email</label>
+    <input type="email" name="eEmail" id="eEmail" formControlName="eEmail" />
+    <div>
+      <small
+        *ngIf="
+          !reactiveForm.get('eEmail')?.valid &&
+          reactiveForm.get('eEmail')?.touched
+        "
+        class="error-message"
+        >Invalid Email</small
+      >
+    </div>
+
+    <label for="ePosition"> Position</label>
+    <input
+      type="text"
+      name="ePosition"
+      id="ePosition"
+      formControlName="ePosition"
+    />
+    <div>
+      <small
+        *ngIf="
+          !reactiveForm.get('ePosition')?.valid &&
+          reactiveForm.get('ePosition')?.touched
+        "
+        class="error-message"
+        >Invalid Position</small
+      >
+    </div>
+
+    <div formGroupName="eAddress">
+      <label for="eLocation"> Location</label>
+      <input
+        type="text"
+        name="eLocation"
+        id="eLocation"
+        formControlName="eLocation"
+      />
+      <div>
+        <small
+          *ngIf="
+            !reactiveForm.get('eAddress.eLocation')?.valid &&
+            reactiveForm.get('eAddress.eLocation')?.touched
+          "
+          class="error-message"
+          >Invalid Location</small
+        >
+      </div>
+
+      <label for="ePostal"> Postal</label>
+      <input
+        type="number"
+        name="ePostal"
+        id="ePostal"
+        formControlName="ePostal"
+      />
+      <div>
+        <small
+          *ngIf="
+            !reactiveForm.get('eAddress.ePostal')?.valid &&
+            reactiveForm.get('eAddress.ePostal')?.touched
+          "
+          class="error-message"
+          >Invalid Postal</small
+        >
+      </div>
+
+      <label for="eCity"> City</label>
+      <input type="text" name="eCity" id="eCity" formControlName="eCity" />
+      <div>
+        <small
+          *ngIf="
+            !reactiveForm.get('eAddress.eCity')?.valid &&
+            reactiveForm.get('eAddress.eCity')?.touched
+          "
+          class="error-message"
+          >Invalid City</small
+        >
+      </div>
+    </div>
+
+    <label for="eSalary"> Salary</label>
+    <input
+      type="number"
+      name="eSalary"
+      id="eSalary"
+      formControlName="eSalary"
+    />
+    <div>
+      <small
+        *ngIf="
+          !reactiveForm.get('eSalary')?.valid &&
+          reactiveForm.get('eSalary')?.touched
+        "
+        class="error-message"
+        >Invalid Salary</small
+      >
+    </div>
+
+    <div formArrayName="eSkills">
+      <ng-container
+        *ngFor="
+          let skill of reactiveForm.get('eSkills')['controls'];
+          index as i
+        "
+      >
+        <div class="form-group">
+          <label for="eSkills">Skills</label>
+          <input
+            type="text"
+            placeholder="Add Skills..."
+            [formControlName]="i"
+          />
+
+          <button
+            type="button"
+            class="remove-skill-btn"
+            (click)="removeSkill(i)"
+          >
+            Remove Skill
+          </button>
+        </div>
+      </ng-container>
+      <button type="button" class="add-skill-btn" (click)="addSkill()">
+        Add Skill
+      </button>
+      <button class="add-skill-btn" type="button" (click)="clearForm()">
+        Clear Form
+      </button>
+    </div>
+
+    <div>
+      <button type="submit" class="submit-btn" [disabled]="!reactiveForm.valid">
+        Register
+      </button>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="submitted" class="submitted-info">
+  <h3 class="tableHeader">Submitted Information</h3>
+  <table>
+    <tr>
+      <th>Name</th>
+      <td>{{ submittedData.eName }}</td>
+      <td><button (click)="editEmployee()" class="edit-btn">Edit</button></td>
+    </tr>
+    <tr>
+      <th>Date of Birth</th>
+      <td>{{ submittedData.eDob }}</td>
+      <td><button (click)="editEmployee()" class="edit-btn">Edit</button></td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>{{ submittedData.eEmail }}</td>
+      <td><button (click)="editEmployee()" class="edit-btn">Edit</button></td>
+    </tr>
+    <tr>
+      <th>Position</th>
+      <td>{{ submittedData.ePosition }}</td>
+      <td><button (click)="editEmployee()" class="edit-btn">Edit</button></td>
+    </tr>
+    <tr>
+      <th>Location</th>
+      <td>{{ submittedData.eAddress.eLocation }}</td>
+      <td><button (click)="editEmployee()" class="edit-btn">Edit</button></td>
+    </tr>
+    <tr>
+      <th>Postal</th>
+      <td>{{ submittedData.eAddress.ePostal }}</td>
+      <td><button (click)="editEmployee()" class="edit-btn">Edit</button></td>
+    </tr>
+    <tr>
+      <th>City</th>
+      <td>{{ submittedData.eAddress.eCity }}</td>
+      <td><button (click)="editEmployee()" class="edit-btn">Edit</button></td>
+    </tr>
+    <tr>
+      <th>Skills</th>
+      <td>
+        <ul>
+          <li *ngFor="let skill of eSkills.controls; index as i">
+            {{ skill.value }}
+          </li>
+        </ul>
+      </td>
+      <td><button (click)="editEmployee()" class="edit-btn">Edit</button></td>
+    </tr>
+  </table>
+</div>

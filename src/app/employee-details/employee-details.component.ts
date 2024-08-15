@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeeService } from '../employee.service';
+import { EmloyeeInformationService } from '../emloyee-information.service';
 
 @Component({
   selector: 'app-employee-details',
@@ -14,7 +15,7 @@ export class EmployeeDetailsComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private employeeService: EmployeeService
+    private employeeService: EmloyeeInformationService
   ) {}
 
   calcuteAge(dob: string) {
