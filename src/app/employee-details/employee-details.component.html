@@ -10,5 +10,9 @@
     <p><strong>City:</strong> {{ user.eAddress.eCity }}</p>
     <p><strong>Salary:</strong> {{ user.eSalary | currency }}</p>
     <p><strong>Skills:</strong> {{ user.eSkills }}</p>
+
+    <div class="close-btn-container">
+      <button (click)="redirectToInfo(user.id)" class="close-btn">Close</button>
+    </div>
   </div>
 </div>

@@ -11,10 +11,11 @@ const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'employeeForm', component: EmployeeFormComponent },
-  { path: 'employeeInformationDisplay/:id', component: EmployeeInformationComponent },
+  { path: 'employeeInformationDisplay/:id', component: EmployeeInformationComponent,},
   { path: 'employeeEdit/:id', component: EmployeeFormComponent },
   { path: 'employeeInformation', component: EmployeeInformationComponent },
   { path: 'employeeDetails/:id', component: EmployeeDetailsComponent },
+  { path: 'employeeRedirect/:id', component: EmployeeInformationComponent },
   { path: '**', component: ErrorComponent },
 ];
 

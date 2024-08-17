@@ -124,7 +124,7 @@ export class EmployeeFormComponent implements OnInit {
             this.sharedService.setFormData(this.reactiveForm.value);
             this.submitted = true;
             this.resetForm(data);
-            this.router.navigate(['employeeInformation', this.submittedData.id]);
+            this.redirect(data.id);
           });
       } else {
         this.employeeInformationService
@@ -134,7 +134,7 @@ export class EmployeeFormComponent implements OnInit {
             this.sharedService.setFormData(this.reactiveForm.value);
             this.submitted = true;
             this.resetForm();
-            this.router.navigate(['employeeInformation', this.submittedData.id]);
+            this.redirect(data.id);
           });
       }
     }
@@ -166,5 +166,9 @@ export class EmployeeFormComponent implements OnInit {
     }
     this.submittedData = null;
     this.submitted = false;
+  }
+
+  redirect(id: string) {
+    this.router.navigate(['employeeInformationDisplay', id]);
   }
 }

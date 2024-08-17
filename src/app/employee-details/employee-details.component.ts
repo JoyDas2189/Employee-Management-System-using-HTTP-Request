@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '../employee.service';
 import { EmloyeeInformationService } from '../emloyee-information.service';
+
 
 @Component({
   selector: 'app-employee-details',
@@ -14,6 +15,7 @@ export class EmployeeDetailsComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private employeeInformationService: EmloyeeInformationService
   ) {}
 
@@ -36,14 +38,13 @@ export class EmployeeDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.employeeId = this.activatedRoute.snapshot.params['id'];
-    // this.employeeInformationService.getEmployee(this.employeeId).subscribe((user) => {
-    //   this.user = user;
-    // });
-
     let id = this.activatedRoute.snapshot.params['id'];
     this.employeeInformationService.getEmployee(id).subscribe((user) => {
       this.user = user;
     });
+  }
+
+  redirectToInfo(id:any) {
+    this.router.navigate(['employeeRedirect', id])
   }
 }

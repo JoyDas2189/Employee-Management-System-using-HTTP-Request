@@ -4,7 +4,7 @@
       "eName": "Joy Das",
       "eDob": "1999-10-27",
       "eEmail": "joy.softifybd@gmail.com",
-      "ePosition": "Intern",
+      "ePosition": "Junior",
       "eAddress": {
         "eLocation": "Sutrapur",
         "ePostal": 1100,
@@ -90,7 +90,7 @@
       "eName": "Ankur",
       "eDob": "1996-06-17",
       "eEmail": "ankur@gmail.com",
-      "ePosition": "Senior",
+      "ePosition": "Junior",
       "eAddress": {
         "eLocation": "Amin",
         "ePostal": 1234,
@@ -102,6 +102,55 @@
         "Angular"
       ],
       "id": "8905"
+    },
+    {
+      "id": "5b03",
+      "eName": "Biren ",
+      "eDob": "1990-09-18",
+      "eEmail": "biren@gmail.com",
+      "ePosition": "Senior",
+      "eAddress": {
+        "eLocation": "Mohakhali",
+        "ePostal": 1201,
+        "eCity": "Dhaka"
+      },
+      "eSalary": 10000,
+      "eSkills": [
+        "Backend"
+      ]
+    },
+    {
+      "eName": "Biren ",
+      "eDob": "1990-09-18",
+      "eEmail": "biren@gmail.com",
+      "ePosition": "Intern",
+      "eAddress": {
+        "eLocation": "Mohakhali",
+        "ePostal": 1201,
+        "eCity": "Dhaka"
+      },
+      "eSalary": 10000,
+      "eSkills": [
+        "Backend"
+      ],
+      "id": "cd0d"
+    },
+    {
+      "eName": "Molla",
+      "eDob": "2005-11-23",
+      "eEmail": "molla@gmail.com",
+      "ePosition": "Intern",
+      "eAddress": {
+        "eLocation": "Grandarea",
+        "ePostal": 1200,
+        "eCity": "Dhaka"
+      },
+      "eSalary": 1200,
+      "eSkills": [
+        "React",
+        "Docker"
+      ],
+      "id": "1937"
     }
   ]
 }
