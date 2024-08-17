@@ -64,17 +64,22 @@
 }
 .viewDetails-btn:hover {
   background-color: #808D7C;
-  transition: 0.6s;
+  transition: 0.6s ease;
 }
 .editDetails-btn {
-  height: 30px;
-  background-color: #9CA986;
+  height: 40px;
+  background-color: blue;
   color: #f2f2f2;
   font-family: Arial, Helvetica, sans-serif;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   padding: 10px;
+  font-size: 15px;
+}
+.editDetails-btn:hover {
+  background-color: navy;
+  transition: 0.6 ease;
 }
 .deleteDetails-btn {
   height: 40px;
@@ -90,7 +95,7 @@
 }
 .deleteDetails-btn:hover {
   background-color: rgba(208, 19, 19, 0.669);
-  transition: 0.6s;
+  transition: 0.6s ease;
 }
 
 .employee-details {

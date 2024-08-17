@@ -17,22 +17,19 @@ export class EmployeeInformationComponent implements OnInit {
   user: any;
 
   constructor(
-    private employeeServece: EmloyeeInformationService,
+    private employeeInformationService: EmloyeeInformationService,
+    private employeeServece: EmployeeService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
   ngOnInit(): void {
-    this.employeeServece.getEmployees().subscribe((data) => {
-      this.employees = data;
-    });
 
-    this.employeeId = this.activatedRoute.snapshot.params['id'];
-    this.employeeServece.getEmployee(this.employeeId).subscribe((user) => {
-      this.user = user;
+    this.employeeInformationService.getEmployees().subscribe((data) => {
+      this.employees = data;
     });
   }
   getEmployees() {
-    this.employeeServece.getEmployees().subscribe((data) => {
+    this.employeeInformationService.getEmployees().subscribe((data) => {
       this.employees = data;
     });
   }
@@ -62,8 +59,9 @@ export class EmployeeInformationComponent implements OnInit {
   }
 
   editEmployee(id: string) {
-    this.router.navigate(['employeeForm', id]);
+    this.router.navigate(['employeeEdit', id]);
   }
+  
   deleteEmployee(id: any) {
     this.employeeServece.deleteEmployee(id).subscribe((res) => {
       this.getEmployees();

@@ -46,30 +46,33 @@ export class EmployeeFormComponent implements OnInit {
       eSkills: new FormArray([new FormControl('', Validators.required)]),
     });
 
-    this.id = this.activatedRoute.snapshot.params['id'];
-    if (this.id) {
-      this.editMode = true;
-      this.employeeInformationService
-        .getEmployee(this.id)
-        .subscribe((employee) => {
-          this.user = employee;
-          this.reactiveForm.setValue({
-            eName: this.user.eName,
-            eDob: this.user.eDob,
-            eEmail: this.user.eEmail,
-            ePosition: this.user.ePosition,
-            eAddress: {
-              eLocation: this.user.eAddress.eLocation,
-              ePostal: this.user.eAddress.ePostal,
-              eCity: this.user.eAddress.eCity,
-            },
-            eSalary: this.user.eSalary,
-            eSkills: this.user.eSkills || [''],
+    const id = this.activatedRoute.snapshot.params['id'];
+    if (id) {
+      this.employeeInformationService.getEmployee(id).subscribe((user) => {
+        console.log('Fetched Employee:', user);
+        this.submittedData = user;
+        this.eSkills.clear();
+        if (user.eSkills && user.eSkills.length > 0) {
+          user.eSkills.forEach((skill: string) => {
+            this.eSkills.push(new FormControl(skill, Validators.required));
           });
+        } else {
+          this.eSkills.push(new FormControl('', Validators.required));
+        }
+        this.reactiveForm.setValue({
+          eName: user.eName,
+          eDob: user.eDob,
+          eEmail: user.eEmail,
+          ePosition: user.ePosition,
+          eAddress: {
+            eLocation: user.eAddress.eLocation,
+            ePostal: user.eAddress.ePostal,
+            eCity: user.eAddress.eCity,
+          },
+          eSalary: user.eSalary,
+          eSkills: user.eSkills || [''],
         });
-    } else {
-      this.editMode = false;
-      this.clearForm();
+      });
     }
   }
 
@@ -109,13 +112,19 @@ export class EmployeeFormComponent implements OnInit {
   }
   onSubmit() {
     if (this.reactiveForm.valid) {
+      console.log('Form Data:', this.reactiveForm.value);
+
       if (this.submittedData?.id) {
+        console.log('Updating Employee ID with : ', this.submittedData.id);
         this.employeeInformationService
           .updateEmployee(this.submittedData.id, this.reactiveForm.value)
           .subscribe((data) => {
+            console.log('Updated Employee Data:', data);
             this.submittedData = data;
             this.sharedService.setFormData(this.reactiveForm.value);
             this.submitted = true;
+            this.resetForm(data);
+            this.router.navigate(['employeeInformation', this.submittedData.id]);
           });
       } else {
         this.employeeInformationService
@@ -124,8 +133,38 @@ export class EmployeeFormComponent implements OnInit {
             this.submittedData = data;
             this.sharedService.setFormData(this.reactiveForm.value);
             this.submitted = true;
+            this.resetForm();
+            this.router.navigate(['employeeInformation', this.submittedData.id]);
           });
       }
     }
+  }
+
+  resetForm(data?: any) {
+    this.reactiveForm.reset();
+    this.eSkills.clear();
+
+    this.reactiveForm.setValue({
+      eName: data?.eName || '',
+      eDob: data?.eDob || '',
+      eEmail: data?.eEmail || '',
+      ePosition: data?.ePosition || '',
+      eAddress: {
+        eLocation: data?.eAddress.eLocation || '',
+        ePostal: data?.eAddress.ePostal || '',
+        eCity: data?.eAddress.eCity || '',
+      },
+      eSalary: data?.eSalary || '',
+      eSkills: [],
+    });
+    if (data?.eSkills && data.eSkills.length > 0) {
+      data.eSkills.forEach((skill: string) => {
+        this.eSkills.push(new FormControl(skill, Validators.required));
+      });
+    } else {
+      this.eSkills.push(new FormControl('', Validators.required));
+    }
+    this.submittedData = null;
+    this.submitted = false;
   }
 }

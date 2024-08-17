@@ -6,16 +6,15 @@ import { EmloyeeInformationService } from '../emloyee-information.service';
 @Component({
   selector: 'app-employee-details',
   templateUrl: './employee-details.component.html',
-  styleUrls : ['./employee-details.component.css'],
+  styleUrls: ['./employee-details.component.css'],
 })
 export class EmployeeDetailsComponent implements OnInit {
   employee: any;
-  employeeId: any;
-  user:any;
+  user: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private employeeService: EmloyeeInformationService
+    private employeeInformationService: EmloyeeInformationService
   ) {}
 
   calcuteAge(dob: string) {
@@ -37,8 +36,13 @@ export class EmployeeDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.employeeId = this.activatedRoute.snapshot.params['id'];
-    this.employeeService.getEmployee(this.employeeId).subscribe((user) => {
+    // this.employeeId = this.activatedRoute.snapshot.params['id'];
+    // this.employeeInformationService.getEmployee(this.employeeId).subscribe((user) => {
+    //   this.user = user;
+    // });
+
+    let id = this.activatedRoute.snapshot.params['id'];
+    this.employeeInformationService.getEmployee(id).subscribe((user) => {
       this.user = user;
     });
   }

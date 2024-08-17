@@ -10,23 +10,23 @@ export class EmloyeeInformationService {
 
   constructor(private http: HttpClient) {}
 
-  getEmployees() {
-    return this.http.get(this.apiUrl);
+  getEmployees():Observable<any>{
+    return this.http.get<any>('http://localhost:3000/employee');
   }
 
   getEmployee(id: any): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`);
+    return this.http.get<any>(`http://localhost:3000/employee/${id}`);
   }
 
   addEmployee(employee: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, employee);
+    return this.http.post<any>('http://localhost:3000/employee', employee);
   }
 
   updateEmployee(id: any, employee: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/${id}`, employee);
+    return this.http.put<any>(`http://localhost:3000/employee/${id}`, employee);
   }
-  
+
   deleteEmployee(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+    return this.http.delete<any>(`http://localhost:3000/employee/${id}`);
   }
 }
